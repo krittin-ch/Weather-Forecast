@@ -65,7 +65,7 @@ opt = tf.keras.optimizers.RMSprop(learning_rate=0.001)
 model.compile(loss=loss_fn, optimizer=opt, metrics=['accuracy'])
 
 # Fit the model on the training data
-history = model.fit([X_train, X_train], y_train, epochs=1, batch_size=32, validation_split=0.1)
+history = model.fit([X_train, X_train], y_train, epochs=5, batch_size=32, validation_split=0.1)
 
 # Plot the training history
 plt.plot(history.history['loss'], label='training_loss')
@@ -86,6 +86,7 @@ y_pred = np.round(model.predict([X_test,X_test]))
 confusion_matrix = metrics.confusion_matrix(y_test, y_pred)
 cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix = confusion_matrix, display_labels = [False, True])
 cm_display.plot()
+plt.savefig('cmatrix_siamese.png')
 plt.show()
 
 # Save model image

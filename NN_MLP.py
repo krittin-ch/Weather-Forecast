@@ -71,7 +71,7 @@ opt = tf.keras.optimizers.RMSprop(learning_rate=lr_schedule)
 model.compile(loss=loss_fn, optimizer=opt, metrics=['accuracy'])
 
 # Fit the model on the training data
-history = model.fit(X_train, y_train, epochs=50, batch_size=32, validation_split=0.1, callbacks=[early_stop, lr_callback])
+history = model.fit(X_train, y_train, epochs=10, batch_size=32, validation_split=0.1, callbacks=[early_stop, lr_callback])
 
 # Plot the training history
 plt.plot(history.history['loss'], label='training_loss')
@@ -92,6 +92,7 @@ y_pred =  np.round(model.predict(X_test))
 confusion_matrix = metrics.confusion_matrix(y_test, y_pred)
 cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix = confusion_matrix, display_labels = [False, True])
 cm_display.plot()
+plt.savefig('cmatrix_MLP.png')
 plt.show()
 
 # Save model image

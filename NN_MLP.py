@@ -3,7 +3,6 @@ import tensorflow as tf
 from tensorflow import keras
 import keras
 from tensorflow.keras.utils import plot_model
-from tensorflow.python.keras.utils import losses_utils
 from sklearn import metrics
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
@@ -21,9 +20,10 @@ print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
 df = pd.read_csv('DataSet.csv')
 data_t2m = np.array(df.get('t2m'))
 data_rh = np.array(df.get('rh'))
+data_sp = np.array(df.get('sp'))
 data_ptype = np.array(df.get('ptype'))
 
-X_data = np.concatenate([data_t2m.reshape(-1, 1), data_rh.reshape(-1, 1)], axis=1)
+X_data = np.concatenate([data_t2m.reshape(-1, 1), data_rh.reshape(-1, 1), data_sp.reshape(-1,1)], axis=1)
 y_data = data_ptype.reshape(-1,1)
 
 # Split the data into training and test sets
@@ -39,10 +39,10 @@ for i in X_train, y_train, X_test, y_test:
 
 # Create the first model
 model = keras.models.Sequential([
-    keras.layers.Dense(4, input_shape=(2,), activation='relu'),
-    keras.layers.Dense(8, activation='relu'),
+    keras.layers.Dense(16, input_shape=(3,), activation='relu'),
     keras.layers.Dense(16, activation='relu'),
-    keras.layers.Dense(8, activation='relu')
+    keras.layers.Dense(16, activation='relu'),
+    keras.layers.Dense(16, activation='relu')
 ])
 
 # Output layer
@@ -71,7 +71,7 @@ opt = tf.keras.optimizers.RMSprop(learning_rate=lr_schedule)
 model.compile(loss=loss_fn, optimizer=opt, metrics=['accuracy'])
 
 # Fit the model on the training data
-history = model.fit(X_train, y_train, epochs=10, batch_size=32, validation_split=0.1, callbacks=[early_stop, lr_callback])
+history = model.fit(X_train, y_train, epochs=3, batch_size=32, validation_split=0.1, callbacks=[early_stop, lr_callback])
 
 # Plot the training history
 plt.plot(history.history['loss'], label='training_loss')
@@ -99,7 +99,7 @@ plt.show()
 plot_model(model, to_file='model_MLP.png', show_shapes=True)
 
 # Save the scaler object
-joblib.dump(scaler, 'scaler_MLP.pkl')
+joblib.dump(scaler, 'NN_MLP_scaler.pkl')
 
 # Sa
 model.save('NN_MLP_model.h5')

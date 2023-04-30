@@ -31,7 +31,6 @@ df_d2m = d2m.to_dataframe(name='d2m')
 df_rh = rh.to_dataframe(name='rh')
 df_wv2m = wv2m.to_dataframe(name='wv2m')
 
-
 # Create a dataframe for i
 i = pd.DataFrame({'i': range(len(wv10m))}, index=wv10m.time)
 

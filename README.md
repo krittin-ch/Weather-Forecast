@@ -1,4 +1,4 @@
-# Weather Forecast based on Deep Learning using Tensorflow and Python
+# Weather Prediction based on Deep Learning using Tensorflow and Python
 This project was created as part of the EES210 class in Electrical Engineering at SIIT. The aim of this project is to develop deep learning models for weather forecasting using Tensorflow and Python. The deep learning models involved in this project include CNN1D, MLP, and Siamese.
 
 # Dataset

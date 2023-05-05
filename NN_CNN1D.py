@@ -67,7 +67,7 @@ lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
 
 # Define a learning rate callback
 lr_callback = keras.callbacks.LearningRateScheduler(schedule=lr_schedule)
-
+    
 # Define early stopping criteria
 early_stop = keras.callbacks.EarlyStopping(
     monitor='val_loss',

@@ -14,4 +14,4 @@ Once the model is trained, you can use it to make weather forecasts based on the
 
 # Contributors
 This project was developed by Krittin Chaowakarn and Chaipak Kamesuk. If you have any questions or feedback, please feel free to contact us.
-Krittin's email: k.chaowakarn@gmail.com and Chaipak's email: 6522800059@g.siit.tu.ac.th
+Krittin's email: krittin.chao@gmail.com and Chaipak's email: 6522800059@g.siit.tu.ac.th
